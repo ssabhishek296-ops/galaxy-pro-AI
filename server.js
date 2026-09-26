@@ -30,7 +30,7 @@ app.post('/api/chat', async (req, res) => {
     }
 
     const response = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent',
       {
         method: 'POST',
         headers: {
@@ -56,6 +56,7 @@ app.post('/api/chat', async (req, res) => {
       .join('\n')
       .trim();
 
+    // Keep the same response shape the frontend already expects
     res.json({ content: [{ type: 'text', text }] });
   } catch (err) {
     console.error(err);
@@ -67,3 +68,4 @@ app.use(express.static('public'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Galaxy Pro server chal raha hai: http://localhost:${PORT}`));
+                  
